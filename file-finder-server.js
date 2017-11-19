@@ -5,8 +5,12 @@
  */
 
 /* globals Java, require */
-/* exported context, repositoryUtil */
+/* exported context */
 
+/**
+ * Contains helper functions for working with
+ * the different types of repositories in this script.
+ */
 var repositoryUtil = (function (exports) {
   var scriptUtil = require('ScriptUtil');
 
@@ -29,6 +33,14 @@ var repositoryUtil = (function (exports) {
   exports.LOCAL_FILE = 3;
   exports.LOCAL_IMAGE = 4;
 
+  /**
+   * Build an edit-URI for a file based on the type of repository the file belongs to.
+   *
+   * @param  {Integer} type
+   * @param  {Array}   args
+   * @return {String}
+   * @public
+   */
   exports.getEditUrlForFile = function getEditUrlForFile (type, args) {
     var pattern;
     if (type === exports.SITE_FILE) {
@@ -47,6 +59,12 @@ var repositoryUtil = (function (exports) {
     return '';
   };
 
+  /**
+   * Get a human readable representation of the repository type.
+   *
+   * @param  {Integer} type
+   * @return {String}
+   */
   exports.getPrettyType = function getPrettyType (type) {
     var prettyType;
     if (type === exports.SITE_FILE) {
@@ -65,19 +83,36 @@ var repositoryUtil = (function (exports) {
   return exports;
 })({});
 
-
+/**
+ * Contains helper functions for SearchHit's indexed path values.
+ */
 var pathsUtil = (function (exports) {
 
+  /**
+   * Filter callback which determines if a path
+   * is a repository node in a crude way.
+   *
+   * @param  {String} path
+   * @return {Boolean}
+   * @private
+   */
   function repositoryIdFilter (path) {
     return path.indexOf('15.') === 0;
   }
 
+  /**
+   * Returns the first repository ID found in the array with paths.
+   *
+   * @param  {Array}          paths An array of paths
+   * @return {String|Boolean}       Returns the ID on success, false otherwise.
+   * @public
+   */
   exports.getRepositoryIdFromPaths = function getRepositoryIdFromPaths (paths) {
-    var filtered = Java.from(paths).filter(repositoryIdFilter);
+    var filtered = paths.filter(repositoryIdFilter);
     if (filtered.length) {
       return filtered[0] + '';
     }
-    return false;
+    return '';
   };
 
   return exports;
@@ -117,8 +152,8 @@ var context = (function (request) {
     '+svtype:(image file)'
   ];
 
+  // Add search query if value exist.
   if (searchValue) {
-
     query.push('+(');
     query.push('nodeid:(' + searchValue + ')');
     query.push('name:(' + searchValue + ')');
@@ -136,11 +171,7 @@ var context = (function (request) {
     editUrl = '';
     siteId = hit.getFieldEscaped('site');
     fileId = hit.getFieldEscaped('id');
-    repoId = pathsUtil.getRepositoryIdFromPaths(hit.getFieldsEscaped('path'));
-
-    if (repoId) {
-
-    }
+    repoId = pathsUtil.getRepositoryIdFromPaths(Java.from(hit.getFieldsEscaped('path')));
 
     if (repoId === fileRepoId) {
       type = repositoryUtil.SITE_FILE;
@@ -148,9 +179,8 @@ var context = (function (request) {
     } else if (repoId === imageRepoId) {
       type = repositoryUtil.SITE_IMAGE;
       editUrl = repositoryUtil.getEditUrlForFile(type, [siteId, fileId]);
-    } else {
+    } else if (repoId) {
       repo = resourceLocatorUtil.getNodeByIdentifier(repoId);
-
       if (repo) {
         // Repository's parent's parent should be the page.
         repoPageId = repo.getParent().getParent().getIdentifier();
@@ -171,9 +201,6 @@ var context = (function (request) {
       "type": repositoryUtil.getPrettyType(type)
     });
   }
-
-
-  // ...
 
   return {
     "items": items,
