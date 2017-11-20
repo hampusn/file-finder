@@ -139,6 +139,7 @@ var context = (function (request) {
   var searchValue = (request.getParameter(searchField) || '') + '';
 
   var items = [];
+  var hitsIterator;
   var hit;
   var repoId;
   var repo;
@@ -147,59 +148,61 @@ var context = (function (request) {
   var siteId;
   var fileId;
   var repoPageId;
+  var query;
 
-  var query = [
-    '+svtype:(image file)'
-  ];
-
-  // Add search query if value exist.
+  // Search only if query value exist.
   if (searchValue) {
-    query.push('+(');
-    query.push('nodeid:(' + searchValue + ')');
-    query.push('name:(' + searchValue + ')');
-    query.push('title:(' + searchValue + ')');
-    query.push('url:(' + searchValue + ')');
-    query.push('"' + searchValue + '"');
-    query.push(')');
+    query = [
+      '+svtype:(image file)',
+      '+(',
+      'nodeid:(' + searchValue + ')',
+      'name:(' + searchValue + ')',
+      'title:(' + searchValue + ')',
+      'url:(' + searchValue + ')',
+      '"' + searchValue + '"',
+      ')'
+    ];
+
+    hitsIterator = searchUtil.search(query.join(' '), null, 0, 100).getHits();
   }
 
-  var hitsIterator = searchUtil.search(query.join(' '), null, 0, 100).getHits();
+  if (hitsIterator) {
+    while (hitsIterator.hasNext()) {
+      hit = hitsIterator.next();
 
-  while (hitsIterator.hasNext()) {
-    hit = hitsIterator.next();
+      editUrl = '';
+      siteId = hit.getFieldEscaped('site');
+      fileId = hit.getFieldEscaped('id');
+      repoId = pathsUtil.getRepositoryIdFromPaths(Java.from(hit.getFieldsEscaped('path')));
 
-    editUrl = '';
-    siteId = hit.getFieldEscaped('site');
-    fileId = hit.getFieldEscaped('id');
-    repoId = pathsUtil.getRepositoryIdFromPaths(Java.from(hit.getFieldsEscaped('path')));
+      if (repoId === fileRepoId) {
+        type = repositoryUtil.SITE_FILE;
+        editUrl = repositoryUtil.getEditUrlForFile(type, [siteId, fileId]);
+      } else if (repoId === imageRepoId) {
+        type = repositoryUtil.SITE_IMAGE;
+        editUrl = repositoryUtil.getEditUrlForFile(type, [siteId, fileId]);
+      } else if (repoId) {
+        repo = resourceLocatorUtil.getNodeByIdentifier(repoId);
+        if (repo) {
+          // Repository's parent's parent should be the page.
+          repoPageId = repo.getParent().getParent().getIdentifier();
 
-    if (repoId === fileRepoId) {
-      type = repositoryUtil.SITE_FILE;
-      editUrl = repositoryUtil.getEditUrlForFile(type, [siteId, fileId]);
-    } else if (repoId === imageRepoId) {
-      type = repositoryUtil.SITE_IMAGE;
-      editUrl = repositoryUtil.getEditUrlForFile(type, [siteId, fileId]);
-    } else if (repoId) {
-      repo = resourceLocatorUtil.getNodeByIdentifier(repoId);
-      if (repo) {
-        // Repository's parent's parent should be the page.
-        repoPageId = repo.getParent().getParent().getIdentifier();
-
-        if (nodeTypeUtil.isType(repo, nodeTypeUtil.LOCAL_FILE_REPOSITORY_TYPE)) {
-          type = repositoryUtil.LOCAL_FILE;
-          editUrl = repositoryUtil.getEditUrlForFile(type, [repoPageId]);
-        } else if (nodeTypeUtil.isType(repo, nodeTypeUtil.LOCAL_IMAGE_REPOSITORY_TYPE)) {
-          type = repositoryUtil.LOCAL_IMAGE;
-          editUrl = repositoryUtil.getEditUrlForFile(type, [repoPageId]);
+          if (nodeTypeUtil.isType(repo, nodeTypeUtil.LOCAL_FILE_REPOSITORY_TYPE)) {
+            type = repositoryUtil.LOCAL_FILE;
+            editUrl = repositoryUtil.getEditUrlForFile(type, [repoPageId]);
+          } else if (nodeTypeUtil.isType(repo, nodeTypeUtil.LOCAL_IMAGE_REPOSITORY_TYPE)) {
+            type = repositoryUtil.LOCAL_IMAGE;
+            editUrl = repositoryUtil.getEditUrlForFile(type, [repoPageId]);
+          }
         }
       }
-    }
 
-    items.push({
-      "title": hit.getFieldEscaped('name'),
-      "editUrl": editUrl,
-      "type": repositoryUtil.getPrettyType(type)
-    });
+      items.push({
+        "title": hit.getFieldEscaped('name'),
+        "editUrl": editUrl,
+        "type": repositoryUtil.getPrettyType(type)
+      });
+    }
   }
 
   return {
