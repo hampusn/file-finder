@@ -2,6 +2,8 @@
 
 Skriptmodul framtagen för att redaktörer enkelt ska kunna hitta vart filer har laddats upp. Främst användbart när man har laddat upp en fil på en sida som man vid ett senare tillfälle inte hittar.
 
+![Exempel](docs/example.png "Exempel")
+
 ## Installation
 
 1. Ladda ner och packa upp [det här zip-arkivet][1].
