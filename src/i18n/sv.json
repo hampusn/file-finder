@@ -1,0 +1,12 @@
+{
+  "searchLabel": "Sök på filnamn eller fil-ID.",
+  "searchText": "Sök",
+  "searchResultText": "Hittade {0} träff(ar) på söktermen <strong>{1}</strong>",
+  "searchNoHitsText": "Hittade inga träffar på söktermen <strong>{0}</strong>",
+  "nameColumnText": "Namn",
+  "locationColumnText": "Plats",
+  "fileArchiveHitLabel": "Filarkivet",
+  "imageArchiveHitLabel": "Bildarkivet",
+  "localFileHitLabel": "Lokal fil",
+  "localImageHitLabel": "Lokal bild"
+}

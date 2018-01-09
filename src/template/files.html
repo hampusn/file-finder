@@ -1,0 +1,26 @@
+<table class="env-table env-table--zebra env-w--100 env-m-top--large" style="table-layout: fixed;">
+  <thead>
+    <tr>
+      <th class="env-w--75"><%= i18n('nameColumnText') %></th>
+      <th class="env-w--25"><%= i18n('locationColumnText') %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% files.forEach(function(file) { %>
+      <tr>
+        <td class="env-w--75" style="overflow: hidden; text-overflow: ellipsis;">
+          <% if (file.editUrl) { %>
+            <a href="<%- file.editUrl %>" title="<%- file.title %>"><%= file.title %></a>
+          <% } else { %>
+            <%= file.title %>
+          <% } %>
+
+          <% if (showId) { %>
+            <small class="env-d--block env-text--muted"><%= file.id %></small>
+          <% } %>
+        </td>
+        <td class="env-w--25"><span class="env-badge env-badge--repo-type-<%- file.slug %>"><%= i18n(file.i18nKey) %></span></td>
+      </tr>
+    <% }); %>
+  </tbody>
+</table>

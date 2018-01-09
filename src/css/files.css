@@ -1,0 +1,15 @@
+.env-badge--repo-type-site-file {
+  background-color: #2c3e50;
+}
+
+.env-badge--repo-type-site-image {
+  background-color: #2980b9;
+}
+
+.env-badge--repo-type-local-file {
+  background-color: #8e44ad;
+}
+
+.env-badge--repo-type-local-image {
+  background-color: #16a085;
+}

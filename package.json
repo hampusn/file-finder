@@ -1,0 +1,34 @@
+{
+  "name": "file-finder",
+  "version": "0.0.1",
+  "description": "Find files in the file archive and files uploaded on pages.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "setup": "grunt setup",
+    "zip": "grunt zip",
+    "deploy": "grunt deploy",
+    "force-deploy": "grunt deploy --force-deploy"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hampusn/file-finder.git"
+  },
+  "keywords": [
+    "webapp"
+  ],
+  "author": "Hampus Nordin <nordin.hampus@gmail.com> (https://hampusnord.in)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hampusn/file-finder/issues"
+  },
+  "homepage": "https://github.com/hampusn/file-finder#readme",
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-contrib-compress": "^1.4.3",
+    "grunt-http-upload": "^0.3.2",
+    "grunt-prompt": "^1.3.3"
+  }
+}
