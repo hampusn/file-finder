@@ -7,10 +7,13 @@
     "doc": "docs"
   },
   "scripts": {
-    "setup": "grunt setup",
-    "zip": "grunt zip",
-    "deploy": "grunt deploy",
-    "force-deploy": "grunt deploy --force-deploy"
+    "setup": "node util/setup.js",
+    "zip": "node util/zip.js",
+    "deploy": "npm run zip && node util/deploy.js",
+    "force-deploy": "npm run zip && node util/deploy.js force",
+    "create-addon": "node util/create-addon.js",
+    "sign": "npm run zip && node util/sign.js",
+    "prod-deploy": "node util/prod-deploy.js"
   },
   "repository": {
     "type": "git",
@@ -26,9 +29,9 @@
   },
   "homepage": "https://github.com/hampusn/file-finder#readme",
   "devDependencies": {
-    "grunt": "^1.0.1",
-    "grunt-contrib-compress": "^1.4.3",
-    "grunt-http-upload": "^0.3.2",
-    "grunt-prompt": "^1.3.3"
+    "inquirer": "^5.2.0",
+    "zip-dir": "^1.0.2",
+    "jsonfile": "^4.0.0",
+    "request": "^2.85.0"
   }
 }
