@@ -1,9 +1,9 @@
 <form action="<%- getUrl('/search') %>" method="get" class="env-form">
   <div class="env-form-element">
-    <label for="<%= appContext.getWebAppNamespace('search') %>" class="env-form-element__label"><%= i18n('searchLabel') %></label>
+    <label for="<%- appContext.getWebAppNamespace('search') %>" class="env-form-element__label"><%= i18n('searchLabel') %></label>
 
     <div class="env-form-element__control">
-      <input type="search" class="env-form-input" name="query" id="<%= appContext.getWebAppNamespace('search') %>" value="<%- query %>">
+      <input type="search" class="env-form-input" name="query" id="<%- appContext.getWebAppNamespace('search') %>" value="<%- query %>">
     </div>
   </div>
   
