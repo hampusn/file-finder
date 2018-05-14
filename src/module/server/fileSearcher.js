@@ -8,6 +8,7 @@ define(function (require) {
   var propertyUtil        = require('PropertyUtil');
   var nodeInfoUtil        = require('/module/server/nodeInfoUtil');
   var appData             = require('appData');
+  var numHits             = appData.get('numHits') != '' ? parseInt(appData.get('numHits')) : 100;
 
   parserBuilder
     .addQueryField('nodeid')
@@ -27,7 +28,7 @@ define(function (require) {
   return {
     getFiles: function (query) {
       var files = [];
-      var hits = searcher.search('*' + query + '*', 100).getHits();
+      var hits = searcher.search('*' + query + '*', numHits).getHits();
       var hit;
       var nodeInfo;
 
