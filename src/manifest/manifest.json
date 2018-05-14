@@ -1,8 +1,0 @@
-{
-   "id": "file-finder",
-   "version": "0.0.1",
-   "name": "File finder",
-   "author": "Hampus Nordin <nordin.hampus@gmail.com>",
-   "description": "Find files in the file archive and files uploaded on pages.",
-   "helpUrl": "https://github.com/hampusn/file-finder#readme"
-}
