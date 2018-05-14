@@ -7,6 +7,7 @@ define(function (require) {
 
   return Component.extend({
     template: filesTemplate,
+    
     filterState: function(state) {
       return _.extend({}, {files: state.files, showId: state.showId});
     }

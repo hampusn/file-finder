@@ -4,7 +4,7 @@
   var router       = require('router');
   var appData      = require('appData');
   var fileSearcher = require('/module/server/fileSearcher');
-  var showId       = appData.get('showId');
+  var showId       = !!appData.get('showId');
 
   router.get('/', function (req, res) {
     var context = {

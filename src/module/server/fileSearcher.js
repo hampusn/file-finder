@@ -24,11 +24,10 @@ define(function (require) {
                   .setFilter(filterBuilder.build())
                   .build();
 
-
   return {
     getFiles: function (query) {
       var files = [];
-      var hits = searcher.search('*' + query + '*', numHits).getHits();
+      var hits  = searcher.search('*' + query + '*', numHits).getHits();
       var hit;
       var nodeInfo;
 

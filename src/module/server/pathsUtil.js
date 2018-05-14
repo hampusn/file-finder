@@ -5,7 +5,7 @@ define(function (require) {
   'use strict';
 
   var REPOSITORY_ID_TYPE = '15.';
-  var PAGE_NODE_ID_TYPE = '4.';
+  var PAGE_NODE_ID_TYPE  = '4.';
 
   /**
    * Creates a filter callback which determines if a path

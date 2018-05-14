@@ -15,8 +15,7 @@ define(function (require) {
 
     "events": {
       "dom": {
-        "submit form": "handleSearch",
-        "input input": "updateSearch"
+        "submit form": "handleSearch"
       },
       "router": {
         "query:changed:query": "getFiles"
@@ -50,10 +49,6 @@ define(function (require) {
           "query": query
         });
       });
-    },
-
-    updateSearch: function (e) {
-      // console.log(e);
     },
 
     handleSearch: function (e) {
