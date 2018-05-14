@@ -6,6 +6,9 @@ define(function (require) {
   var router       = require('router');
   var app          = require('app');
   var mainTemplate = require('/template/main');
+  var _            = require('underscore');
+  var store        = require('store');
+
 
   return Component.extend({
     "template": mainTemplate,
@@ -20,14 +23,16 @@ define(function (require) {
       },
       "self": {
         "state:changed": "render"
-      }
+      },
+      "store": 'handleStoreChange'
     },
 
     getFiles: function (options) {
       var query = options.queryParams.query;
 
       if (!query) {
-        this.setState({
+        store.dispatch({
+          "type": "SET_FILES",
           "files": [],
           "query": ''
         });
@@ -39,7 +44,8 @@ define(function (require) {
         "url":     options.url,
         "context": this
       }).done(function (response) {
-        this.setState({
+        store.dispatch({
+          "type": "SET_FILES",
           "files": response.files,
           "query": query
         });
@@ -58,6 +64,14 @@ define(function (require) {
           "query": this.$('input[name=query]').val()
         }
       });
+    },
+    
+    handleStoreChange: function(newState) {
+      this.setState(newState);
+    },
+
+    filterState: function(state) {
+      return _.extend({}, {query: state.query, files: state.files, showId: state.showId});
     }
   });
 });

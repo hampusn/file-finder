@@ -21,10 +21,7 @@
     var files = fileSearcher.getFiles(query);
 
     if (req.xhr) {
-      res.json({
-        "files":  files,
-        "showId": showId
-      });
+      res.json({"files": files});
     } else {
       res.render('/search', {
         "files":  files,

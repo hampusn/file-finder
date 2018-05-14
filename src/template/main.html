@@ -11,13 +11,11 @@
     <button type="submit" class="env-button env-button--primary"><%= i18n('searchText') %></button>
   </div>
 </form>
-
 <% if (files.length) { %>
   <p class="env-text"><%= i18n('searchResultText', files.length, query) %></p>
 
   <%= renderer.renderComponent('files', {
     files: files,
-    route: route,
     showId: showId
   }) %>
 <% } else if (query) { %>
