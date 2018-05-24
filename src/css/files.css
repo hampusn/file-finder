@@ -1,3 +1,30 @@
+/**
+ * @file
+ * Styling for the file finder webapp.
+ */
+
+.file-finder-form__row {
+  -webkit-box-align: end;
+  -ms-flex-align: end;
+  align-items: flex-end;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.file-finder-form__element--search {
+  -webkit-box-flex: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  margin-right: 0.5em;
+}
+
+.file-finder-form__element--submit .file-finder-form__button {
+  font-size: 1em;
+  line-height: 1.25em;
+  padding: 0.5em 1em;
+}
+
 .env-badge--repo-type-site-file {
   background-color: #2c3e50;
 }

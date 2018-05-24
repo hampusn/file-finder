@@ -1,16 +1,18 @@
-<form action="<%- getUrl('/search') %>" method="get" class="env-form">
-  <div class="env-form-element">
-    <label for="<%- appContext.getWebAppNamespace('search') %>" class="env-form-element__label"><%= i18n('searchLabel') %></label>
+<form action="<%- getUrl('/search') %>" method="get" class="file-finder-form env-form">
+  <div class="file-finder-form__row">
+    <div class="file-finder-form__element file-finder-form__element--search env-form-element">
+      <label for="<%- appContext.getWebAppNamespace('search') %>" class="env-form-element__label"><%= i18n('searchLabel') %></label>
 
-    <div class="env-form-element__control">
-      <input type="search" class="env-form-input" name="query" id="<%- appContext.getWebAppNamespace('search') %>" value="<%- query %>">
-    </div>
-  </div>
-  
-  <div class="env-form-element">
-    <button type="submit" class="env-button env-button--primary"><%= i18n('searchText') %></button>
-  </div>
-</form>
+      <div class="env-form-element__control">
+        <input type="search" class="env-form-input" name="query" id="<%- appContext.getWebAppNamespace('search') %>" value="<%- query %>">
+      </div><!--! .env-form-element__control -->
+    </div><!--! .env-form-element -->
+
+    <div class="file-finder-form__element file-finder-form__element--submit env-form-element">
+      <button type="submit" class="file-finder-form__button env-button env-button--primary"><%= i18n('searchText') %></button>
+    </div><!--! .env-form-element -->
+  </div><!--! .file-finder-form__row -->
+</form><!--! .env-form -->
 <% if (files.length) { %>
   <p class="env-text"><%= i18n('searchResultText', files.length, query) %></p>
 
