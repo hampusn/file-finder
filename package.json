@@ -6,15 +6,10 @@
   "directories": {
     "doc": "docs"
   },
-  "scripts": {
-    "setup": "node util/setup.js",
-    "zip": "node util/zip.js",
-    "deploy": "npm run zip && node util/deploy.js",
-    "force-deploy": "npm run zip && node util/deploy.js force",
-    "create-addon": "node util/create-addon.js",
-    "sign": "npm run zip && node util/sign.js",
-    "prod-deploy": "node util/prod-deploy.js"
+  "devDependencies": {
+    "@sitevision/sitevision-scripts": "^1.2.0"
   },
+  "scripts": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/hampusn/file-finder.git"
@@ -27,11 +22,5 @@
   "bugs": {
     "url": "https://github.com/hampusn/file-finder/issues"
   },
-  "homepage": "https://github.com/hampusn/file-finder#readme",
-  "devDependencies": {
-    "inquirer": "^5.2.0",
-    "zip-dir": "^1.0.2",
-    "jsonfile": "^4.0.0",
-    "request": "^2.85.0"
-  }
+  "homepage": "https://github.com/hampusn/file-finder#readme"
 }
