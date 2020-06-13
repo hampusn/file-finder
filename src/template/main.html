@@ -16,10 +16,7 @@
 <% if (files.length) { %>
   <p class="env-text"><%= i18n('searchResultText', files.length, query) %></p>
 
-  <%= renderer.renderComponent('files', {
-    files: files,
-    showId: showId
-  }) %>
+  <%= renderer.renderComponent('Files') %>
 <% } else if (query) { %>
   <p class="env-text"><%= i18n('searchNoHitsText', query) %></p>
 <% } %>

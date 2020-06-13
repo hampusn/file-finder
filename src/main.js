@@ -1,72 +1,70 @@
-define(function (require) {
+define((require) => {
   'use strict';
 
-  var Component    = require('Component');
-  var requester    = require('requester');
-  var router       = require('router');
-  var app          = require('app');
-  var mainTemplate = require('/template/main');
-  var _            = require('underscore');
-  var store        = require('store');
-
+  const Component = require('Component');
+  const requester = require('requester');
+  const router = require('router');
+  const template = require('/template/main');
+  const store = require('store');
 
   return Component.extend({
-    "template": mainTemplate,
+    template,
 
-    "events": {
-      "dom": {
-        "submit form": "handleSearch"
+    events: {
+      dom: {
+        'submit form': 'handleSearch'
       },
-      "router": {
-        "query:changed:query": "getFiles"
+      router: {
+        'query:changed:query': 'getFiles'
       },
-      "self": {
-        "state:changed": "render"
+      self: {
+        'state:changed': 'render'
       },
-      "store": 'handleStoreChange'
+      store: 'handleStoreChange'
     },
 
-    getFiles: function (options) {
-      var query = options.queryParams.query;
+    getFiles (options) {
+      const { query = '' } = options.queryParams;
 
+      // Prevent unnecessary ajax.
       if (!query) {
         store.dispatch({
-          "type": "SET_FILES",
-          "files": [],
-          "query": ''
+          type: 'SET_FILES',
+          files: [],
+          query: ''
         });
 
         return;
       }
 
       requester.doGet({
-        "url":     options.url,
-        "context": this
-      }).done(function (response) {
+        url: options.url,
+        context: this
+      }).done((response) => {
         store.dispatch({
-          "type": "SET_FILES",
-          "files": response.files,
-          "query": query
+          type: 'SET_FILES',
+          files: response.files,
+          query
         });
       });
     },
 
-    handleSearch: function (e) {
-      e.preventDefault();
+    handleSearch (event) {
+      event.preventDefault();
 
-      router.navigate(e.currentTarget.action, {
-        "queryParams": {
-          "query": this.$('input[name=query]').val()
+      router.navigate(event.currentTarget.action, {
+        queryParams: {
+          query: this.$('input[name=query]').val()
         }
       });
     },
     
-    handleStoreChange: function(newState) {
+    handleStoreChange (newState) {
       this.setState(newState);
     },
 
-    filterState: function(state) {
-      return _.extend({}, {query: state.query, files: state.files, showId: state.showId});
+    filterState (state) {
+      return { ...state };
     }
   });
 });

@@ -1,14 +1,12 @@
-define(function (require) {
+define((require) => {
   'use strict';
 
-  var searcherBuilder     = require('SearcherBuilder');
-  var parserBuilder       = require('ExtendedDismaxParserBuilder');
-  var filterBuilder       = require('FilterBuilder');
-  var resourceLocatorUtil = require('ResourceLocatorUtil');
-  var propertyUtil        = require('PropertyUtil');
-  var nodeInfoUtil        = require('/module/server/nodeInfoUtil');
-  var appData             = require('appData');
-  var numHits             = appData.get('numHits') != '' ? parseInt(appData.get('numHits')) : 100;
+  const searcherBuilder = require('SearcherBuilder');
+  const parserBuilder = require('ExtendedDismaxParserBuilder');
+  const filterBuilder = require('FilterBuilder');
+  const nodeInfoUtil = require('/module/server/nodeInfoUtil');
+  const appData = require('appData');
+  const numHits = appData.get('numHits') != '' ? parseInt(appData.get('numHits')) : 100;
 
   parserBuilder
     .addQueryField('nodeid')
@@ -19,29 +17,26 @@ define(function (require) {
   filterBuilder
     .addFilterQuery('+svtype:(image file)');
 
-  var searcher = searcherBuilder
-                  .setParser(parserBuilder.build())
-                  .setFilter(filterBuilder.build())
-                  .build();
+  const searcher = searcherBuilder
+    .setParser(parserBuilder.build())
+    .setFilter(filterBuilder.build())
+    .build();
 
   return {
-    getFiles: function (query) {
-      var files = [];
-      var hits  = searcher.search('*' + query + '*', numHits).getHits();
-      var hit;
-      var nodeInfo;
+    getFiles (query) {
+      const files = [];
+      const hits  = searcher.search('*' + query + '*', numHits).getHits();
 
       while (hits.hasNext()) {
-        hit = hits.next();
-
-        nodeInfo = nodeInfoUtil.getFileInfoFromSearchHit(hit);
+        const hit = hits.next();
+        const nodeInfo = nodeInfoUtil.getFileInfoFromSearchHit(hit);
 
         files.push({
-          "title":   hit.getFieldEscaped('name'),
-          "id":      hit.getField('nodeid'),
-          "editUrl": nodeInfo.editUrl,
-          "slug":    nodeInfo.slug,
-          "i18nKey": nodeInfo.i18nKey
+          title: hit.getFieldEscaped('name'),
+          id: hit.getField('nodeid'),
+          editUrl: nodeInfo.editUrl,
+          slug: nodeInfo.slug,
+          i18nKey: nodeInfo.i18nKey
         });
       }
 

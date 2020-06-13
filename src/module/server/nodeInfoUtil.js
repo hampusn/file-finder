@@ -1,28 +1,28 @@
 /**
  * Contains helper functions for getting information about nodes and repositories.
  */
-define(function (require) {
+define((require) => {
   'use strict';
 
-  var resourceLocatorUtil = require('ResourceLocatorUtil');
-  var nodeTypeUtil        = require('NodeTypeUtil');
-  var propertyUtil        = require('PropertyUtil');
-  var scriptUtil          = require('ScriptUtil');
-  var logUtil             = require('LogUtil');
-  var pathsUtil           = require('/module/server/pathsUtil');
+  const resourceLocatorUtil = require('ResourceLocatorUtil');
+  const nodeTypeUtil = require('NodeTypeUtil');
+  const propertyUtil = require('PropertyUtil');
+  const scriptUtil = require('ScriptUtil');
+  const logUtil = require('LogUtil');
+  const pathsUtil = require('/module/server/pathsUtil');
 
-  var infoTypes = (function () {
-    var types = {};
+  const infoTypes = (function () {
+    const types = {};
 
     return {
-      add: function (typeName, slug, i18nKey, editUrlPattern) {
+      add (typeName, slug, i18nKey, editUrlPattern) {
         types[typeName] = {
           "slug": slug,
           "i18nKey": i18nKey,
           "editUrlPattern": editUrlPattern
         };
       },
-      get: function (typeName) {
+      get (typeName) {
         return types[typeName];
       }
     };
@@ -69,28 +69,28 @@ define(function (require) {
   }
 
   function getFileInfoFromSearchHit (hit) {
-    var siteId   = hit.getField('site');
-    var fileId   = hit.getField('id');
-    var paths    = hit.getFields('path').toArray();
-    var repoId   = pathsUtil.getRepositoryIdFromPaths(paths);
-    var repo     = resourceLocatorUtil.getNodeByIdentifier(repoId);
-    var repoType = propertyUtil.getString(repo, 'jcr:primaryType', '');
+    const siteId = hit.getField('site');
+    const fileId = hit.getField('id');
+    const paths = hit.getFields('path').toArray();
+    const repoId = pathsUtil.getRepositoryIdFromPaths(paths);
+    const repo = resourceLocatorUtil.getNodeByIdentifier(repoId);
+    const repoType = propertyUtil.getString(repo, 'jcr:primaryType', '');
 
-    var args = [siteId, fileId];
+    const args = [siteId, fileId];
 
     if (nodeTypeUtil.isTypeOf(repo, [nodeTypeUtil.LOCAL_FILE_REPOSITORY_TYPE, nodeTypeUtil.LOCAL_IMAGE_REPOSITORY_TYPE])) {
       args.push(pathsUtil.getClosestOfTypeFromPath(paths, repoId, pathsUtil.PAGE_NODE_ID_TYPE));
     }
 
     return {
-      "editUrl": getEditUrlForInfoType(repoType, args),
-      "repoType": repoType,
-      "i18nKey": getI18nKeyForInfoType(repoType),
-      "slug": getSlugForInfoType(repoType)
+      editUrl: getEditUrlForInfoType(repoType, args),
+      repoType: repoType,
+      i18nKey: getI18nKeyForInfoType(repoType),
+      slug: getSlugForInfoType(repoType)
     };
   }
 
   return {
-    "getFileInfoFromSearchHit": getFileInfoFromSearchHit
+    getFileInfoFromSearchHit
   };
 });

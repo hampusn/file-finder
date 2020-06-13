@@ -1,11 +1,11 @@
 /**
  * Contains helper functions for SearchHit's indexed path values.
  */
-define(function (require) {
+define(() => {
   'use strict';
 
-  var REPOSITORY_ID_TYPE = '15.';
-  var PAGE_NODE_ID_TYPE  = '4.';
+  const REPOSITORY_ID_TYPE = '15.';
+  const PAGE_NODE_ID_TYPE  = '4.';
 
   /**
    * Creates a filter callback which determines if a path
@@ -16,9 +16,7 @@ define(function (require) {
    * @private
    */
   function getTypeFilter (type) {
-    return function (path) {
-      return path.indexOf(type) === 0;
-    };
+    return (path) => path.includes(type);
   }
 
   /**
@@ -29,7 +27,7 @@ define(function (require) {
    * @public
    */
   function getRepositoryIdFromPaths (paths) {
-    var filtered = paths.filter(getTypeFilter(REPOSITORY_ID_TYPE));
+    const filtered = paths.filter(getTypeFilter(REPOSITORY_ID_TYPE));
     if (filtered.length) {
       return filtered[0] + '';
     }
@@ -37,7 +35,7 @@ define(function (require) {
   }
 
   function getClosestOfTypeFromPath (paths, path, type) {
-    var filtered = paths.slice(paths.indexOf(path) + 1).filter(getTypeFilter(type));
+    const filtered = paths.slice(paths.indexOf(path) + 1).filter(getTypeFilter(type));
     if (filtered.length) {
       return filtered[0] + '';
     }
@@ -45,9 +43,9 @@ define(function (require) {
   }
 
   return {
-    "getRepositoryIdFromPaths": getRepositoryIdFromPaths,
-    "getClosestOfTypeFromPath": getClosestOfTypeFromPath,
-    "REPOSITORY_ID_TYPE": REPOSITORY_ID_TYPE,
-    "PAGE_NODE_ID_TYPE": PAGE_NODE_ID_TYPE
+    getRepositoryIdFromPaths,
+    getClosestOfTypeFromPath,
+    REPOSITORY_ID_TYPE,
+    PAGE_NODE_ID_TYPE
   };
 });

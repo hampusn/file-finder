@@ -1,15 +1,14 @@
-define(function (require) {
+define((require) => {
   'use strict';
 
-  var Component     = require('Component');
-  var filesTemplate = require('/template/files');
-  var _             = require('underscore');
+  const Component = require('Component');
+  const template = require('/template/files');
 
   return Component.extend({
-    template: filesTemplate,
+    template,
     
-    filterState: function(state) {
-      return _.extend({}, {files: state.files, showId: state.showId});
+    filterState ({ files, showId }) {
+      return { files, showId };
     }
   });
 });
