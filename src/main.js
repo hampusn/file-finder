@@ -4,6 +4,7 @@ define((require) => {
   const Component = require('Component');
   const requester = require('requester');
   const router = require('router');
+  const app = require('app');
   const template = require('/template/main');
   const store = require('store');
 
@@ -61,6 +62,13 @@ define((require) => {
     
     handleStoreChange (newState) {
       this.setState(newState);
+    },
+
+    templateFunctions () {
+      return {
+        pathParamaterName: `sv.${app.portletId}.route`,
+        portletId: app.portletId
+      };
     },
 
     filterState (state) {

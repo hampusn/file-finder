@@ -1,4 +1,7 @@
-<form action="<%- getUrl('/search') %>" method="get" class="file-finder-form env-form">
+<form action="<%= getUrl('/') %>" method="get" class="file-finder-form env-form">
+  <input type="hidden" name="<%= pathParamaterName %>" value="/">
+  <input type="hidden" name="sv.target" value="<%= portletId %>">
+
   <div class="file-finder-form__row">
     <div class="file-finder-form__element file-finder-form__element--search env-form-element">
       <label for="<%- appContext.getWebAppNamespace('search') %>" class="env-form-element__label"><%= i18n('searchLabel') %></label>
