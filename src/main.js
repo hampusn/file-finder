@@ -20,16 +20,20 @@ define((require) => {
       }
     },
 
+    dispatchResults (files = [], query = '') {
+      store.dispatch({
+        type: 'SET_FILES',
+        files,
+        query
+      });
+    },
+
     getFiles (options) {
       const { query = '' } = options.queryParams;
 
       // Prevent unnecessary ajax.
       if (!query) {
-        store.dispatch({
-          type: 'SET_FILES',
-          files: [],
-          query: ''
-        });
+        this.dispatchResults();
 
         return;
       }
@@ -38,11 +42,7 @@ define((require) => {
         url: options.url,
         context: this
       }).done((response) => {
-        store.dispatch({
-          type: 'SET_FILES',
-          files: response.files,
-          query
-        });
+        this.dispatchResults(response.files, query);
       });
     },
 
@@ -55,7 +55,7 @@ define((require) => {
         }
       });
     },
-    
+
     templateFunctions () {
       return {
         pathParamaterName: `sv.${app.portletId}.route`,
