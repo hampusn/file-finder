@@ -16,11 +16,5 @@
     </div><!--! .env-form-element -->
   </div><!--! .file-finder-form__row -->
 </form><!--! .env-form -->
-<% if (files.length) { %>
-  <p class="env-text"><%= i18n('searchResultText', files.length, query) %></p>
 
-  <%= renderer.renderComponent('Files') %>
-<% } else if (query) { %>
-  <p class="env-text"><%= i18n('searchNoHitsText', query) %></p>
-<% } %>
-
+<%= renderer.renderComponent('Files') %>

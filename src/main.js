@@ -17,11 +17,7 @@ define((require) => {
       },
       router: {
         'query:changed:query': 'getFiles'
-      },
-      self: {
-        'state:changed': 'render'
-      },
-      store: 'handleStoreChange'
+      }
     },
 
     getFiles (options) {
@@ -60,10 +56,6 @@ define((require) => {
       });
     },
     
-    handleStoreChange (newState) {
-      this.setState(newState);
-    },
-
     templateFunctions () {
       return {
         pathParamaterName: `sv.${app.portletId}.route`,

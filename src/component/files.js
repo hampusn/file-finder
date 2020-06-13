@@ -6,9 +6,20 @@ define((require) => {
 
   return Component.extend({
     template,
+
+    events: {
+      self: {
+        'state:changed': 'render'
+      },
+      store: 'handleStoreChange'
+    },
+
+    handleStoreChange (newState) {
+      this.setState(newState);
+    },
     
-    filterState ({ files, showId }) {
-      return { files, showId };
+    filterState (state) {
+      return { ...state };
     }
   });
 });
