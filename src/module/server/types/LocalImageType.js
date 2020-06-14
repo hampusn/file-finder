@@ -6,6 +6,12 @@ define((require) => {
   const Type = require('/module/server/types/Type');
 
   const IMAGE_INDEX_TYPE = 'image';
+  const TYPES = [
+    pathsUtil.PAGE_NODE_ID_TYPE,
+    pathsUtil.ARTICLE_NODE_ID_TYPE,
+    pathsUtil.SITE_NODE_ID_TYPE,
+    pathsUtil.SOCIAL_GROUP_PAGE_ID_TYPE
+  ];
 
   class LocalImageType extends Type {
     static _match (searchHit) {
@@ -25,7 +31,7 @@ define((require) => {
     static _getFileInfo (searchHit) {
       const paths = searchHit.getFields('path').toArray();
       const repoId = pathsUtil.getRepositoryIdFromPaths(paths);
-      const nodeId = pathsUtil.getClosestOfTypeFromPath(paths, repoId, pathsUtil.PAGE_NODE_ID_TYPE); // TODO, support article ids. And more?
+      const nodeId = pathsUtil.getClosestOfTypeFromPath(paths, repoId, TYPES);
 
       return {
         editUrl: `/edit/${nodeId}/properties/pageImages`

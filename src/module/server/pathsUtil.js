@@ -8,6 +8,9 @@ define(() => {
   const SOCIAL_IMAGE_REPOSITORY_ID_TYPE = '406.';
   const SOCIAL_FILE_REPOSITORY_ID_TYPE = '407.';
   const PAGE_NODE_ID_TYPE  = '4.';
+  const ARTICLE_NODE_ID_TYPE  = '5.';
+  const SITE_NODE_ID_TYPE  = '2.';
+  const SOCIAL_GROUP_PAGE_ID_TYPE = '704.';
 
   function compoundOrFilter (filters = []) {
     return (...args) => filters.some((filter) => filter(...args));
@@ -22,7 +25,7 @@ define(() => {
    * @private
    */
   function getTypeFilter (type) {
-    return (path) => path.includes(type);
+    return (path) => path.startsWith(type);
   }
 
   /**
@@ -46,7 +49,8 @@ define(() => {
   }
 
   function getClosestOfTypeFromPath (paths, path, type) {
-    const filtered = paths.slice(paths.indexOf(path) + 1).filter(getTypeFilter(type));
+    const typeFilter = Array.isArray(type) ? compoundOrFilter(type.map(t => getTypeFilter(t))) : getTypeFilter(type);
+    const filtered = paths.slice(paths.indexOf(path) + 1).filter(typeFilter);
     if (filtered.length) {
       return filtered[0] + '';
     }
@@ -57,6 +61,9 @@ define(() => {
     getRepositoryIdFromPaths,
     getClosestOfTypeFromPath,
     REPOSITORY_ID_TYPE,
-    PAGE_NODE_ID_TYPE
+    PAGE_NODE_ID_TYPE,
+    ARTICLE_NODE_ID_TYPE,
+    SITE_NODE_ID_TYPE,
+    SOCIAL_GROUP_PAGE_ID_TYPE
   };
 });
