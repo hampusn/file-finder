@@ -1,6 +1,6 @@
 {
   "id": "hampusn.file-finder",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "name": "File finder",
   "author": "Hampus Nordin",
   "description": "Find files in the file archive and files uploaded on pages.",
