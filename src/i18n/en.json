@@ -5,8 +5,10 @@
   "searchNoHitsText": "Could not find any hits on the search term <strong>{0}</strong>",
   "nameColumnText": "Name",
   "locationColumnText": "Location",
-  "fileArchiveHitLabel": "File archive",
-  "imageArchiveHitLabel": "Image archive",
-  "localFileHitLabel": "Local file",
-  "localImageHitLabel": "Local image"
+  "labelSiteFileType": "File archive",
+  "labelSiteImageType": "Image archive",
+  "labelLocalFileType": "Local file",
+  "labelLocalImageType": "Local image",
+  "labelGroupFileType": "Local file",
+  "labelGroupImageType": "Local image"
 }

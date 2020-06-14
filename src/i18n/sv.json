@@ -5,8 +5,10 @@
   "searchNoHitsText": "Hittade inga träffar på söktermen <strong>{0}</strong>",
   "nameColumnText": "Namn",
   "locationColumnText": "Plats",
-  "fileArchiveHitLabel": "Filarkivet",
-  "imageArchiveHitLabel": "Bildarkivet",
-  "localFileHitLabel": "Lokal fil",
-  "localImageHitLabel": "Lokal bild"
+  "labelSiteFileType": "Filarkivet",
+  "labelSiteImageType": "Bildarkivet",
+  "labelLocalFileType": "Lokal fil",
+  "labelLocalImageType": "Lokal bild",
+  "labelGroupFileType": "Gruppfil",
+  "labelGroupImageType": "Gruppbild"
 }

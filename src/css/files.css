@@ -25,18 +25,26 @@
   padding: 0.5em 1em;
 }
 
-.env-badge--repo-type-site-file {
+.env-badge--repo-type-site-file-type {
   background-color: #2c3e50;
 }
 
-.env-badge--repo-type-site-image {
-  background-color: #2980b9;
+.env-badge--repo-type-site-image-type {
+  background-color: #287CB4;
 }
 
-.env-badge--repo-type-local-file {
+.env-badge--repo-type-local-file-type {
   background-color: #8e44ad;
 }
 
-.env-badge--repo-type-local-image {
-  background-color: #16a085;
+.env-badge--repo-type-local-image-type {
+  background-color: #12866F;
+}
+
+.env-badge--repo-type-group-file-type {
+  background-color: #ED0D00;
+}
+
+.env-badge--repo-type-group-image-type {
+  background-color: #A36B00;
 }

@@ -5,7 +5,13 @@ define(() => {
   'use strict';
 
   const REPOSITORY_ID_TYPE = '15.';
+  const SOCIAL_IMAGE_REPOSITORY_ID_TYPE = '406.';
+  const SOCIAL_FILE_REPOSITORY_ID_TYPE = '407.';
   const PAGE_NODE_ID_TYPE  = '4.';
+
+  function compoundOrFilter (filters = []) {
+    return (...args) => filters.some((filter) => filter(...args));
+  }
 
   /**
    * Creates a filter callback which determines if a path
@@ -27,7 +33,12 @@ define(() => {
    * @public
    */
   function getRepositoryIdFromPaths (paths) {
-    const filtered = paths.filter(getTypeFilter(REPOSITORY_ID_TYPE));
+    const repositoryFilter = compoundOrFilter([
+      getTypeFilter(REPOSITORY_ID_TYPE),
+      getTypeFilter(SOCIAL_IMAGE_REPOSITORY_ID_TYPE),
+      getTypeFilter(SOCIAL_FILE_REPOSITORY_ID_TYPE)
+    ]);
+    const filtered = paths.filter(repositoryFilter);
     if (filtered.length) {
       return filtered[0] + '';
     }

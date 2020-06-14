@@ -29,15 +29,8 @@ define((require) => {
 
       while (hits.hasNext()) {
         const hit = hits.next();
-        const nodeInfo = nodeInfoUtil.getFileInfoFromSearchHit(hit);
-
-        files.push({
-          title: hit.getFieldEscaped('name'),
-          id: hit.getField('nodeid'),
-          editUrl: nodeInfo.editUrl,
-          slug: nodeInfo.slug,
-          i18nKey: nodeInfo.i18nKey
-        });
+        
+        files.push(nodeInfoUtil.getFileInfoFromSearchHit(hit));
       }
 
       return files;

@@ -23,7 +23,7 @@
               <small class="env-d--block env-text--muted"><%= file.id %></small>
             <% } %>
           </td>
-          <td class="env-w--25"><span class="env-badge env-badge--repo-type-<%- file.slug %>"><%= i18n(file.i18nKey) %></span></td>
+          <td class="env-w--25"><span class="env-badge env-badge--repo-type-<%- file.slug %>"><%= file.type %></span></td>
         </tr>
       <% }); %>
     </tbody>
