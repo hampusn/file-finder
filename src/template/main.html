@@ -8,7 +8,7 @@
     <div class="env-form-element__control">
       <input type="search" class="env-form-input" name="query" id="<%- appContext.getWebAppNamespace('search') %>" value="<%- query %>">
     </div><!--! .env-form-element__control -->
-  </div><!--! .env-form-element -->
+  </div><!--! .file-finder-form__element -->
 
   <fieldset class="file-finder-form__element env-form-element">
     <legend class="file-finder-form__label env-form-element__label"><%= i18n('contentTypesLabel') %></legend>
@@ -20,7 +20,7 @@
           <span class="env-form-radio__fake"></span>
           <span class="env-form-radio__label"><%= i18n('typeFilesAndImagesLabel') %></span>
         </label>
-      </div>
+      </div><!--! .file-finder-form__radio -->
 
       <div class="file-finder-form__radio env-form-radio">
         <input id="<%- appContext.getWebAppNamespace('type1') %>" type="radio" name="type" value="file" <%- checked(type === 'file') %> />
@@ -28,7 +28,7 @@
           <span class="env-form-radio__fake"></span>
           <span class="env-form-radio__label"><%= i18n('typeFilesOnlyLabel') %></span>
         </label>
-      </div>
+      </div><!--! .file-finder-form__radio -->
 
       <div class="file-finder-form__radio env-form-radio">
         <input id="<%- appContext.getWebAppNamespace('type2') %>" type="radio" name="type" value="image" <%- checked(type === 'image') %> />
@@ -36,13 +36,13 @@
           <span class="env-form-radio__fake"></span>
           <span class="env-form-radio__label"><%= i18n('typeImagesOnlyLabel') %></span>
         </label>
-      </div>
-    </div>
-  </fieldset>
+      </div><!--! .file-finder-form__radio -->
+    </div><!--! .env-form-element__control -->
+  </fieldset><!--! .file-finder-form__element -->
 
   <div class="file-finder-form__element file-finder-form__element--submit env-form-element">
     <button type="submit" class="file-finder-form__button env-button env-button--primary"><%= i18n('searchText') %></button>
-  </div><!--! .env-form-element -->
-</form><!--! .env-form -->
+  </div><!--! .file-finder-form__element -->
+</form><!--! .file-finder-form -->
 
 <%= renderer.renderComponent('Files') %>
