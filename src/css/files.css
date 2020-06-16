@@ -3,6 +3,12 @@
  * Styling for the file finder webapp.
  */
 
+.file-finder-form {
+  background-color: #eee;
+  margin-bottom: 1em;
+  padding: 1em;
+}
+
 fieldset.file-finder-form__element {
   border: 0;
   margin-left: 0;
