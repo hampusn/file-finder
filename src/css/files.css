@@ -32,6 +32,10 @@ fieldset.file-finder-form__element {
   padding: 0.5em 1em;
 }
 
+.file-finder__results-table {
+  table-layout: fixed;
+}
+
 .env-badge--repo-type-site-file-type {
   background-color: #2c3e50;
 }

@@ -1,8 +1,13 @@
+<p class="file-finder__results-info env-text" aria-live="polite" aria-atomic="true">
+  <% if (files.length) { %>
+    <%= i18n('searchResultText', files.length, query) %>
+  <% } else if (query) { %>
+    <%= i18n('searchNoHitsText', query) %>
+  <% } %>
+</p><!--! .file-finder__results-info -->
+
 <% if (files.length) { %>
-
-  <p class="env-text"><%= i18n('searchResultText', files.length, query) %></p>
-
-  <table class="env-table env-table--zebra env-w--100 env-m-top--large" style="table-layout: fixed;">
+  <table class="file-finder__results-table env-table env-table--zebra env-w--100 env-m-top--large">
     <thead>
       <tr>
         <th class="env-w--75"><%= i18n('nameColumnText') %></th>
@@ -27,10 +32,5 @@
         </tr>
       <% }); %>
     </tbody>
-  </table>
-
-<% } else if (query) { %>
-
-  <p class="env-text"><%= i18n('searchNoHitsText', query) %></p>
-
+  </table><!--! .file-finder__results-table -->
 <% } %>
