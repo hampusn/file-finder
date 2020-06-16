@@ -16,20 +16,21 @@ define((require) => {
         'submit form': 'handleSearch'
       },
       router: {
-        'query:changed:query': 'getFiles'
+        'query:changed': 'getFiles'
       }
     },
 
-    dispatchResults (files = [], query = '') {
+    dispatchResults (files = [], query = '', contentType = '') {
       store.dispatch({
         type: 'SET_FILES',
         files,
-        query
+        query,
+        contentType
       });
     },
 
     getFiles (options) {
-      const { query = '' } = options.queryParams;
+      const { query = '', type = '' } = options.queryParams;
 
       // Prevent unnecessary ajax.
       if (!query) {
@@ -42,7 +43,7 @@ define((require) => {
         url: options.url,
         context: this
       }).done((response) => {
-        this.dispatchResults(response.files, query);
+        this.dispatchResults(response.files, query, type);
       });
     },
 
@@ -51,7 +52,8 @@ define((require) => {
 
       router.navigate(event.currentTarget.action, {
         queryParams: {
-          query: this.$('input[name=query]').val()
+          query: this.$('input[name=query]').val(),
+          type: this.$('input[name="type"]:checked').val()
         }
       });
     },
@@ -59,7 +61,10 @@ define((require) => {
     templateFunctions () {
       return {
         pathParamaterName: `sv.${app.portletId}.route`,
-        portletId: app.portletId
+        portletId: app.portletId,
+        checked (condition = false) {
+          return condition ? 'checked' : '';
+        }
       };
     },
 

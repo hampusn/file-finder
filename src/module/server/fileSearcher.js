@@ -8,28 +8,36 @@ define((require) => {
   const appData = require('appData');
   const numHits = appData.get('numHits') != '' ? parseInt(appData.get('numHits')) : 100;
 
+  const ALLOWED_TYPES = [ 'fileresource', 'file', 'image' ];
+  const DEFAULT_TYPE = 'fileresource';
+
   parserBuilder
+    .clearQueryFields()
     .addQueryField('nodeid')
     .addQueryField('name.analyzed')
     .addQueryField('title.analyzed')
     .addQueryField('url');
 
-  filterBuilder
-    .addFilterQuery('+svtype:(image file)');
-
-  const searcher = searcherBuilder
-    .setParser(parserBuilder.build())
-    .setFilter(filterBuilder.build())
-    .build();
+  searcherBuilder.setParser(parserBuilder.build());
 
   const ensureString = (mixed) => new String(mixed || '');
+  const ensureAllowedType = (type) => ALLOWED_TYPES.includes(type) ? type : DEFAULT_TYPE;
 
   return {
-    getFiles (query) {
+    getFiles (query, type) {
       const files = [];
 
       query = ensureString(query);
       query = query.includes('*') ? query : `*${query}*`;
+
+      type = ensureAllowedType(type);
+      filterBuilder
+        .clearFilterQueries()
+        .addFilterQuery(`+svtype:${type}`);
+
+      const searcher = searcherBuilder
+        .setFilter(filterBuilder.build())
+        .build();
 
       const hits = searcher.search(query, numHits).getHits();
 

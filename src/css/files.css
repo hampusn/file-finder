@@ -3,20 +3,27 @@
  * Styling for the file finder webapp.
  */
 
-.file-finder-form__row {
-  -webkit-box-align: end;
-  -ms-flex-align: end;
-  align-items: flex-end;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+fieldset.file-finder-form__element {
+  border: 0;
+  margin-left: 0;
+  margin-right: 0;
+  padding: 0;
 }
 
-.file-finder-form__element--search {
-  -webkit-box-flex: 1;
-  -ms-flex-positive: 1;
-  flex-grow: 1;
-  margin-right: 0.5em;
+.file-finder-form__element legend.env-form-element__label {
+  padding: 0;
+}
+
+.file-finder-form__label {
+  font-weight: 700;
+}
+
+.file-finder-form__radio {
+  display: inline-block;
+}
+
+.file-finder-form__radio:not(:last-child) {
+  margin-right: 1em;
 }
 
 .file-finder-form__element--submit .file-finder-form__button {

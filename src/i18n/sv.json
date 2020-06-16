@@ -1,5 +1,9 @@
 {
-  "searchLabel": "Sök på filnamn eller fil-ID.",
+  "queryLabel": "Sök på filnamn eller fil-ID.",
+  "contentTypesLabel": "Innehållstyper",
+  "typeFilesAndImagesLabel": "Filer och bilder",
+  "typeFilesOnlyLabel": "Bara filer",
+  "typeImagesOnlyLabel": "Bara bilder",
   "searchText": "Sök",
   "searchResultText": "Hittade {0} träff(ar) på söktermen <strong>{1}</strong>",
   "searchNoHitsText": "Hittade inga träffar på söktermen <strong>{0}</strong>",

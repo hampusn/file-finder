@@ -7,8 +7,8 @@
   const showId = !!appData.get('showId');
 
   router.get('/', (req, res) => {
-    const { query = '' } = req.params;
-    const files = query ? fileSearcher.getFiles(query) : [];
+    const { query = '', type = '' } = req.params;
+    const files = query ? fileSearcher.getFiles(query, type) : [];
 
     if (req.xhr) {
       res.json({ files });
@@ -16,6 +16,7 @@
       res.render('/', {
         files,
         query,
+        type,
         showId
       });
     }

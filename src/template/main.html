@@ -2,19 +2,47 @@
   <input type="hidden" name="<%= pathParamaterName %>" value="/">
   <input type="hidden" name="sv.target" value="<%= portletId %>">
 
-  <div class="file-finder-form__row">
-    <div class="file-finder-form__element file-finder-form__element--search env-form-element">
-      <label for="<%- appContext.getWebAppNamespace('search') %>" class="env-form-element__label"><%= i18n('searchLabel') %></label>
+  <div class="file-finder-form__element file-finder-form__element--search env-form-element">
+    <label for="<%- appContext.getWebAppNamespace('search') %>" class="file-finder-form__label env-form-element__label"><%= i18n('queryLabel') %></label>
 
-      <div class="env-form-element__control">
-        <input type="search" class="env-form-input" name="query" id="<%- appContext.getWebAppNamespace('search') %>" value="<%- query %>">
-      </div><!--! .env-form-element__control -->
-    </div><!--! .env-form-element -->
+    <div class="env-form-element__control">
+      <input type="search" class="env-form-input" name="query" id="<%- appContext.getWebAppNamespace('search') %>" value="<%- query %>">
+    </div><!--! .env-form-element__control -->
+  </div><!--! .env-form-element -->
 
-    <div class="file-finder-form__element file-finder-form__element--submit env-form-element">
-      <button type="submit" class="file-finder-form__button env-button env-button--primary"><%= i18n('searchText') %></button>
-    </div><!--! .env-form-element -->
-  </div><!--! .file-finder-form__row -->
+  <fieldset class="file-finder-form__element env-form-element">
+    <legend class="file-finder-form__label env-form-element__label"><%= i18n('contentTypesLabel') %></legend>
+    
+    <div class="env-form-element__control">
+      <div class="file-finder-form__radio env-form-radio">
+        <input id="<%- appContext.getWebAppNamespace('type0') %>" type="radio" name="type" value="" <%- checked(type === '') %> />
+        <label for="<%- appContext.getWebAppNamespace('type0') %>" class="env-form-element__label">
+          <span class="env-form-radio__fake"></span>
+          <span class="env-form-radio__label"><%= i18n('typeFilesAndImagesLabel') %></span>
+        </label>
+      </div>
+
+      <div class="file-finder-form__radio env-form-radio">
+        <input id="<%- appContext.getWebAppNamespace('type1') %>" type="radio" name="type" value="file" <%- checked(type === 'file') %> />
+        <label for="<%- appContext.getWebAppNamespace('type1') %>" class="env-form-element__label">
+          <span class="env-form-radio__fake"></span>
+          <span class="env-form-radio__label"><%= i18n('typeFilesOnlyLabel') %></span>
+        </label>
+      </div>
+
+      <div class="file-finder-form__radio env-form-radio">
+        <input id="<%- appContext.getWebAppNamespace('type2') %>" type="radio" name="type" value="image" <%- checked(type === 'image') %> />
+        <label for="<%- appContext.getWebAppNamespace('type2') %>" class="env-form-element__label">
+          <span class="env-form-radio__fake"></span>
+          <span class="env-form-radio__label"><%= i18n('typeImagesOnlyLabel') %></span>
+        </label>
+      </div>
+    </div>
+  </fieldset>
+
+  <div class="file-finder-form__element file-finder-form__element--submit env-form-element">
+    <button type="submit" class="file-finder-form__button env-button env-button--primary"><%= i18n('searchText') %></button>
+  </div><!--! .env-form-element -->
 </form><!--! .env-form -->
 
 <%= renderer.renderComponent('Files') %>

@@ -1,5 +1,9 @@
 {
-  "searchLabel": "Search on file name or file ID.",
+  "queryLabel": "Search on file name or file ID.",
+  "contentTypesLabel": "Content types",
+  "typeFilesAndImagesLabel": "Files and images",
+  "typeFilesOnlyLabel": "Files only",
+  "typeImagesOnlyLabel": "Images only",
   "searchText": "Search",
   "searchResultText": "Found {0} hit(s) on the search term <strong>{1}</strong>",
   "searchNoHitsText": "Could not find any hits on the search term <strong>{0}</strong>",
