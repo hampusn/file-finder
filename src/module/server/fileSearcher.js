@@ -22,10 +22,16 @@ define((require) => {
     .setFilter(filterBuilder.build())
     .build();
 
+  const ensureString = (mixed) => new String(mixed || '');
+
   return {
     getFiles (query) {
       const files = [];
-      const hits  = searcher.search('*' + query + '*', numHits).getHits();
+
+      query = ensureString(query);
+      query = query.includes('*') ? query : `*${query}*`;
+
+      const hits = searcher.search(query, numHits).getHits();
 
       while (hits.hasNext()) {
         const hit = hits.next();
