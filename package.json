@@ -1,6 +1,6 @@
 {
   "name": "file-finder",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Find files in the file archive and files uploaded on pages.",
   "main": "index.js",
   "directories": {
