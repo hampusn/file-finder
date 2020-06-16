@@ -6,7 +6,7 @@
     <label for="<%- appContext.getWebAppNamespace('search') %>" class="file-finder-form__label env-form-element__label"><%= i18n('queryLabel') %></label>
 
     <div class="env-form-element__control">
-      <input type="search" class="env-form-input" name="query" id="<%- appContext.getWebAppNamespace('search') %>" value="<%- query %>">
+      <input type="search" class="file-finder-form__input env-form-input" name="query" id="<%- appContext.getWebAppNamespace('search') %>" value="<%- query %>">
     </div><!--! .env-form-element__control -->
   </div><!--! .file-finder-form__element -->
 
@@ -17,7 +17,7 @@
       <div class="file-finder-form__radio env-form-radio">
         <input id="<%- appContext.getWebAppNamespace('type0') %>" type="radio" name="type" value="" <%- checked(type === '') %> />
         <label for="<%- appContext.getWebAppNamespace('type0') %>" class="env-form-element__label">
-          <span class="env-form-radio__fake"></span>
+          <span class="file-finder-form__radio__fake env-form-radio__fake"></span>
           <span class="env-form-radio__label"><%= i18n('typeFilesAndImagesLabel') %></span>
         </label>
       </div><!--! .file-finder-form__radio -->
@@ -25,7 +25,7 @@
       <div class="file-finder-form__radio env-form-radio">
         <input id="<%- appContext.getWebAppNamespace('type1') %>" type="radio" name="type" value="file" <%- checked(type === 'file') %> />
         <label for="<%- appContext.getWebAppNamespace('type1') %>" class="env-form-element__label">
-          <span class="env-form-radio__fake"></span>
+          <span class="file-finder-form__radio__fake env-form-radio__fake"></span>
           <span class="env-form-radio__label"><%= i18n('typeFilesOnlyLabel') %></span>
         </label>
       </div><!--! .file-finder-form__radio -->
@@ -33,7 +33,7 @@
       <div class="file-finder-form__radio env-form-radio">
         <input id="<%- appContext.getWebAppNamespace('type2') %>" type="radio" name="type" value="image" <%- checked(type === 'image') %> />
         <label for="<%- appContext.getWebAppNamespace('type2') %>" class="env-form-element__label">
-          <span class="env-form-radio__fake"></span>
+          <span class="file-finder-form__radio__fake env-form-radio__fake"></span>
           <span class="env-form-radio__label"><%= i18n('typeImagesOnlyLabel') %></span>
         </label>
       </div><!--! .file-finder-form__radio -->

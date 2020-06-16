@@ -59,3 +59,11 @@ fieldset.file-finder-form__element {
 .env-badge--repo-type-group-image-type {
   background-color: #A36B00;
 }
+
+
+/* Accessibility fixes */
+
+.file-finder-form__input,
+label .file-finder-form__radio__fake:after {
+  border-color: #666;
+}
