@@ -73,3 +73,7 @@ fieldset.file-finder-form__element {
 label .file-finder-form__radio__fake:after {
   border-color: #666;
 }
+
+[type=radio]:checked+label .file-finder-form__radio__fake:before {
+  border-color: #6186CC;
+}
