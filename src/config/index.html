@@ -1,16 +1,18 @@
 <div class="panel panel-default">
   <div class="panel-heading">
-    <h3 class="panel-title">Inställningar</h3>
+    <h3 class="panel-title">Allmänt</h3>
   </div>
 
   <div class="panel-body">
     <div class="form-group">
-     <label><input type="checkbox" name="showId" data-value-type="boolean"> Visa ID:n vid varje träff</label>
+     <label for="show-id"><input id="show-id" aria-describedby="show-id-help" type="checkbox" name="showId" data-value-type="boolean"> Visa ID:n vid varje träff</label>
+     <p id="show-id-help" class="help-block">Visa nodernas interna identifierare vid varje träff. Identifieraren kan vara användbart i samband med felsökning eller i skript.</p>
     </div>
     
     <div class="form-group">
-      <label for="numHits">Max antal träffar</label>
-      <input id="numHits" class="form-control" name="numHits" type="number" data-value-type="number">
+      <label for="num-hits">Max antal träffar</label>
+      <input id="num-hits" aria-describedby="num-hits-help" class="form-control" name="numHits" type="number" min="1" max="1000" step="1" value="100" required>
+      <p id="num-hits-help" class="help-block">Välj det högsta antalet träffar som ska visas i resultatet.</p>
     </div>
   </div>
 </div>
