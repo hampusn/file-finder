@@ -22,5 +22,8 @@
   "bugs": {
     "url": "https://github.com/hampusn/file-finder/issues"
   },
-  "homepage": "https://github.com/hampusn/file-finder#readme"
+  "homepage": "https://github.com/hampusn/file-finder#readme",
+  "sitevision_scripts_properties": {
+    "transpile": true
+  }
 }
