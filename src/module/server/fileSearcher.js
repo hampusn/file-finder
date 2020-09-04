@@ -5,8 +5,9 @@ define((require) => {
   const parserBuilder = require('ExtendedDismaxParserBuilder');
   const filterBuilder = require('FilterBuilder');
   const nodeInfoUtil = require('/module/server/nodeInfoUtil');
+  const clamp = require('/module/server/utils/clamp');
   const appData = require('appData');
-  const numHits = appData.get('numHits') != '' ? parseInt(appData.get('numHits')) : 100;
+  const numHits = clamp(parseInt(appData.get('numHits')), 1, 1000, 100);
 
   const ALLOWED_TYPES = [ 'fileresource', 'file', 'image' ];
   const DEFAULT_TYPE = 'fileresource';
