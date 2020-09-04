@@ -5,14 +5,26 @@
 
   <div class="panel-body">
     <div class="form-group">
-     <label for="show-id"><input id="show-id" aria-describedby="show-id-help" type="checkbox" name="showId" data-value-type="boolean"> Visa ID:n vid varje träff</label>
+     <label class="form-label" for="show-id"><input id="show-id" aria-describedby="show-id-help" type="checkbox" name="showId" data-value-type="boolean"> Visa ID:n vid varje träff</label>
      <p id="show-id-help" class="help-block">Visa nodernas interna identifierare vid varje träff. Identifieraren kan vara användbart i samband med felsökning eller i skript.</p>
     </div>
     
     <div class="form-group">
-      <label for="num-hits">Max antal träffar</label>
+      <label class="form-label" for="num-hits">Max antal träffar</label>
       <input id="num-hits" aria-describedby="num-hits-help" class="form-control" name="numHits" type="number" min="1" max="1000" step="1" value="100" required>
       <p id="num-hits-help" class="help-block">Välj det högsta antalet träffar som ska visas i resultatet.</p>
     </div>
+  </div>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Har du ett förbättringsförslag eller upptäckt ett fel?</h3>
+  </div>
+
+  <div class="panel-body">
+    <p>Om du vill rapportera in ett fel eller skicka in ett förbättringsförslag kan du antingen maila mig direkt eller lägga in ny Issue direkt på Github.</p>
+    <p>E-post skickar du till <a href="mailto:hello@hampus.io">hello@hampus.io</a> och för att lägga in en ny Issue besöker du sidan <a href="https://github.com/hampusn/file-finder/issues/new" rel="external" target="_blank">New Issue  (extern länk, eng)</a>.</p>
+    <p>Befintliga olösta fel och förbättringsförslag finner du under fliken <a href="https://github.com/hampusn/file-finder/issues" rel="external" target="_blank">Issues (extern länk, eng)</a>.</p>
   </div>
 </div>
